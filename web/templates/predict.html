@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prediction</title>
+</head>
+<body>
+    <span>{{ date }}</span>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="../static/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var date = JSON.parse('{{ date|tojson|safe }}');
+        var pred = JSON.parse('{{ pred|tojson|safe }}');
+
+        const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: date,
+            datasets: [{
+              label: 'Celcius',
+              data: pred,
+            }]
+          },
+        });
+      </script>      
+</body>
+</html>
